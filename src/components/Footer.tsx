@@ -1,44 +1,55 @@
-import { Box, SvgIcon } from "@mui/material";
-import CopyrightIcon from "@mui/icons-material/Copyright";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import { COLORS, FONTS } from '../constants/theme';
 
-const Styles = {
-  Link: styled.a`
-    transition: color 0.5s linear;
-    text-decoration: none;
-    color: white;
-  `,
-  Text: styled.span`
-    font-family: "Times New Roman", Times, serif;
-    color: white;
-    font-weight: normal;
-    margin-right: 10px;
-  `,
-};
+const FooterWrapper = styled.footer`
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.25rem 2rem;
+  border-top: 1px solid ${COLORS.cardBorder};
+  background: rgba(10, 10, 20, 0.85);
+  backdrop-filter: blur(8px);
+`;
 
-export const Footer = () => {
-  return (
-    <Box
-      sx={{
-        height: 30,
-        backgroundColor: "primary.dark",
-        position: "fixed",
-        bottom: 0,
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: 'end'
-      }}
+const RuneGlyph = styled.span`
+  color: ${COLORS.purple};
+  font-size: 1rem;
+`;
+
+const FooterText = styled.span`
+  font-family: ${FONTS.mono};
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.8rem;
+`;
+
+const FooterLink = styled.a`
+  font-family: ${FONTS.mono};
+  color: ${COLORS.gold};
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: text-shadow 0.2s;
+
+  &:hover {
+    text-shadow: 0 0 8px rgba(240,192,64,0.7);
+  }
+`;
+
+export const Footer: React.FC = () => (
+  <FooterWrapper>
+    <RuneGlyph>ᚠ</RuneGlyph>
+    <FooterText>Forged by Daniel Aizenband</FooterText>
+    <FooterText>·</FooterText>
+    <FooterLink
+      href="https://github.com/DanielAizen/DanielAizen.github.io"
+      target="_blank"
+      rel="noopener noreferrer"
     >
-      <Styles.Text>
-        Built by: Daniel Aizenband
-        <SvgIcon sx={{ fontSize: "small" }}>
-          <CopyrightIcon />
-        </SvgIcon>
-        <Styles.Link href="https://github.com/DanielAizen/DanielAizen.github.io">
-          {' '}| Source Code
-        </Styles.Link>
-      </Styles.Text>
-    </Box>
-  );
-};
+      Source Code
+    </FooterLink>
+    <RuneGlyph>ᚠ</RuneGlyph>
+  </FooterWrapper>
+);
